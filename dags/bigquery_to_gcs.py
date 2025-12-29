@@ -22,6 +22,7 @@ with DAG(
 
     bigquery_to_gcs = BigQueryToGCSOperator(
         task_id="bigquery_to_gcs_export",
+        gcp_conn_id="google_cloud_default",
         source_project_dataset_table=f"{BQ_PROJECT}.{BQ_DATASET}.{BQ_TABLE_ID}",
         destination_cloud_storage_uris=[f"gs://{GC_BUCKET}/users.jsonl.gz"],
         export_format="NEWLINE_DELIMITED_JSON",
